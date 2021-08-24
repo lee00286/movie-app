@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = 5000
 const bodyParser = require('body-parser');      // body-parser Dependency
 const cookieParser = require('cookie-parser');  // cookie-parser Dependency
 const config = require('./config/key');         // mongo key를 가져옴
@@ -23,6 +22,10 @@ mongoose.connect(config.mongoURI, {                   // prod.js에서 사용한
 
 app.get('/', (req, res) => {
   res.send('Hello World!')                            // 웹 화면에 작성
+})
+
+app.get('/api/hello', (req, res) => {
+  res.send("Hello!");
 })
 
 // Register Route (회원가입 때 필요한 정보를 client에서 가져오면 db에 넣어줌)
@@ -96,6 +99,8 @@ app.get('/api/users/logout', auth, (req, res) => {
       }
     ) 
 })
+
+const port = 5000
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
