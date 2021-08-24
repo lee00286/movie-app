@@ -1,0 +1,18 @@
+client
+
+[Redux를 위한 폴더]
+_actions
+_reducer
+
+[Page를 위한 폴더]
+components/views
+components/views/Sections: 페이지에 관련된 css 파일/component
+components/views/LandingPage: 첫 화면
+components/views/LoginPage: 로그인 화면
+components/views/NavBar: 네비게이션 사이드바
+
+App.js: Routing (로그인 페이지로 가고 싶으면 연결해주는 등의 기능)
+Config.js: 환경 변수 정하는 곳
+
+hoc: Higher Order Component
+utils: 여러 군데에서 쓰일 수 있는 것들을 모아두어 어디서든 쓸 수 있도록 함
