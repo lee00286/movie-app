@@ -1,36 +1,49 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
+import MainImage from './Sections/MainImage';
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 
-function LandingPage(props) {
-    // LandingPage에 들어오자마자 useEffect 실행
-    useEffect(() => {
-        axios.get('/api/hello') // 서버에 get reqeust 보냄; 엔드포인트
-        .then(response => console.log(response.data)) // response를 콘솔창에 띄움
-    }, [])
+function LandingPage() {
+    const [Movies, setMovies] = useState([]);
+    const [MainMovieImage, setMainMovieImage] = useState(null);
 
-    // 로그아웃 버튼
-    const onClickHandler = () => {
-        axios.get('/api/users/logout')
+    useEffect(() => {
+         // Get Movie Page
+        const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+        fetch(endpoint) // 인기있는 영화를 가져옴
+        .then(response => response.json())
         .then(response => {
-            if(response.data.success) {
-                props.history.push("./login");
-            } else {
-                alert('로그아웃 하는데 실패 했습니다.');
-            }
-        });
-    };
+            console.log(response);
+            setMovies([response.results]);
+            setMainMovieImage(response.results[0]);
+        }); // response는 20개의 인기있는 영화를 저장함
+
+    }, []);
 
     return (
-        <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center',
-            width: '100%', height: '100vh'
-        }}>
-            <h2>시작 페이지</h2>
+        <div style={{ width: '100%', margin: '0' }}>
 
-            <button onClick={onClickHandler}>
-                로그아웃
-            </button>
+            {/* Main Image */}
+            {MainMovieImage && /* MainMovieImage가 있으면 아래의 코드 실행 */
+                <MainImage
+                    image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`} 
+                    title={MainMovieImage.original_title}
+                    text={MainMovieImage.overview}
+                />
+            }
+
+            <div style={{ width: '85%', margin: '1rem auto' }}>
+                <h2>Movies by latest</h2>
+                <hr />
+
+                {/* Movie Grid Cards */}
+
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button>Load More</button>
+            </div>
         </div>
     )
 }
