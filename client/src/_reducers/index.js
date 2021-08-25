@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
-// import user from './user_reducer';
+import user from './user_reducer';
 
 // 다양한 Reducer을 합쳐줌
 const rootReducer = combineReducers({
-    // user,
+    user
 });
 
 export default rootReducer;
