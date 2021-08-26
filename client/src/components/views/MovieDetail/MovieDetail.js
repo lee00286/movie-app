@@ -3,8 +3,8 @@ import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
 import MainImage from '../LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
-// Grid import
-import GridCards from '../commons/GridCards';
+import Favorite from './Sections/Favorite';
+import GridCards from '../commons/GridCards'; // Grid import
 import { Row } from 'antd'; // AntDesign에서 import
 
 function MovieDetail(props) {
@@ -49,6 +49,11 @@ function MovieDetail(props) {
 
             {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
+                {/* Favorite Button */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
+                </div>
+
                 {/* Movie Info */}
                 <MovieInfo 
                     movie={Movie}

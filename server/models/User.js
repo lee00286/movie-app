@@ -32,7 +32,7 @@ const userSchema = mongoose.Schema({ // mongoose를 이용하여 Schema 생성
     tokenExp: { // 토큰을 사용할 수 있는 기간
         type: Number
     }
-})
+});
 
 // Register Route에서 user.save를 실행하기 전에 이 function 실행
 userSchema.pre('save', function(next) { 
@@ -77,10 +77,10 @@ userSchema.statics.findByToken = function(token, cb) {
         user.findOne({ "_id": decoded, "token": token }, function(err, user) {
             if(err) return cb(err);
             cb(null, user);
-        })
+        });
     });
 }
 
-const User = mongoose.model('User', userSchema) // Schema를 모델로 감싸줌
+const User = mongoose.model('User', userSchema); // Schema를 모델로 감싸줌
 
-module.exports = { User }
+module.exports = { User };
