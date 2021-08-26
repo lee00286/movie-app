@@ -31,8 +31,8 @@ function LandingPage() {
     // "Load More" 버튼을 누르면 더 많은 영화가 로딩됨
     const loadMoreItems = () => {
         const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage + 1}`;
-        fetchMovies(endpoint)
-    }
+        fetchMovies(endpoint);
+    };
 
     return (
         <div style={{ width: '100%', margin: '0' }}>
@@ -74,4 +74,4 @@ function LandingPage() {
     );
 }
 
-export default LandingPage
+export default LandingPage;
