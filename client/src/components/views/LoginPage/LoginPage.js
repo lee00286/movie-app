@@ -1,11 +1,11 @@
-import axios from 'axios';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'           // Dispatch 연결
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { withRouter } from "react-router-dom";
 import { loginUser } from '../../../_actions/user_action';
 
 function LoginPage(props) {
     const dispatch = useDispatch();
+    const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false;
     
     // State
     const [Email, setEmail]= useState("");          // Email을 위한 State

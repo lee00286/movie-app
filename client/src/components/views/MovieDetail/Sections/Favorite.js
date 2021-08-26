@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Axios from 'axios';
-import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
+import { withRouter } from "react-router-dom";
 import { Button } from 'antd';
 
 function Favorite(props) {
@@ -75,5 +75,5 @@ function Favorite(props) {
     );
 }
 
-// export default Favorite;
-export default withRouter(Favorite);
+export default Favorite;
+//export default withRouter(Favorite);

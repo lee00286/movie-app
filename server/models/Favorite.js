@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const favoriteSchema = mongoose.Schema({ // mongoose를 이용하여 Schema 생성
     userFrom: {
-        type: Schema.Tyes.ObjectId,
-        ref: 'User'// User 모델에서 ObjectId를 사용해서 정보를 가져옴
+        type: Schema.Types.ObjectId,
+        ref: 'User' // User 모델에서 ObjectId를 사용해서 정보를 가져옴
     },
     movieId: {
         type: String
